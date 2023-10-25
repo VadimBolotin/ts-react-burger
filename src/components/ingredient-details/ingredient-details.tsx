@@ -1,0 +1,89 @@
+import { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from '../../services/app/hooks';
+import { useGetIngredientsQuery } from '../../services/features/ingredients/reducer';
+import { SHOW_INGREDIENT_DETAILS } from '../../services/features/current-ingredient/slice';
+import getCurrentIngredient from '../../services/features/current-ingredient/selectors';
+import styles from './ingredient-details.module.css';
+
+interface IIngredientDetailsProps {
+    isSinglePage?: boolean;
+}
+
+interface IListIngredientParams {
+    param?: number;
+    nameEng: string;
+    nameRus: string;
+}
+
+const IngredientDetails = ({
+    isSinglePage = false,
+}: IIngredientDetailsProps) => {
+
+    const { id: _id } = useParams();
+    const { data } = useGetIngredientsQuery();
+    const dispatch = useAppDispatch();
+
+    useEffect(() => {
+        const res = data?.data.find((ingredient) => ingredient._id === _id);
+
+        if (res) {
+        dispatch(SHOW_INGREDIENT_DETAILS(res));
+        }
+    }, [data]);
+
+    const currentIngredient = useAppSelector(getCurrentIngredient);
+
+    const list: IListIngredientParams[] = [
+        {
+        param: currentIngredient?.calories,
+        nameEng: 'calories',
+        nameRus: 'Калории,ккал',
+        },
+        {
+        param: currentIngredient?.proteins,
+        nameEng: 'proteins',
+        nameRus: 'Белки, г',
+        },
+        {
+        param: currentIngredient?.fat,
+        nameEng: 'fat',
+        nameRus: 'Жиры, г',
+        },
+        {
+        param: currentIngredient?.carbohydrates,
+        nameEng: 'carbohydrates',
+        nameRus: 'Углеводы, г',
+        },
+    ];
+
+    return (
+        <div className={styles.wrapper}>
+        {(isSinglePage && (
+            <h1 className={`${styles.heading} text text_type_main-medium`}>Детали ингредиента</h1>
+        )) || <h3 className={`${styles.heading} text text_type_main-medium`}>Детали ингредиента</h3>}
+        <div className={styles.item}>
+            <img
+            className={styles.image}
+            src={currentIngredient?.image}
+            alt={`Блюдо дня: ${currentIngredient?.name}`}
+            />
+            {(isSinglePage && (
+            <h2 className={`${styles.headingItem} text text_type_main-medium  mt-4`}>{currentIngredient?.name}</h2>
+            )) || <h4 className={`${styles.headingItem} text text_type_main-medium  mt-4`}>{currentIngredient?.name}</h4>}
+            <ul className={styles.list}>
+            {list.map(({ param, nameEng, nameRus }) => (
+                <li key={`key-${nameEng}`} className={styles.listItem}>
+                {(isSinglePage && (
+                    <h3 className={`${styles.listHeading} text text_type_main-default`}>{nameRus}</h3>
+                )) || <h5 className={`${styles.listHeading} text text_type_main-default`}>{nameRus}</h5>}
+                <span>{param}</span>
+                </li>
+            ))}
+            </ul>
+        </div>
+        </div>
+    );
+};
+
+export default IngredientDetails;

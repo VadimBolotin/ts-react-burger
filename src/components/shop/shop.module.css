@@ -1,0 +1,32 @@
+/* @mixin show-font(
+  $family: 'Jet Brains Mono',
+  $weight: 400,
+  $size,
+  $line-height,
+  $color: $color-text-primary
+) {
+  font-family: $family;
+  font-weight: $weight;
+  font-size: $size;
+  line-height: $line-height;
+  color: $color;
+} */
+.main{
+    color: #f2f2f3;
+}
+.wrapper{
+    max-width: 1240px;
+    margin: 0 auto;
+    padding-bottom: 40px;
+}
+.heading{
+    padding: 40px 0 20px;
+    font-weight: 700;
+    font-size: 3.6rem;
+    line-height: 111%;
+}
+.shop{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 40px;
+}

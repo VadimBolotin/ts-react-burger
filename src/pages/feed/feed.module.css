@@ -1,0 +1,11 @@
+.wrapper{
+    max-width: 1240px;
+    margin: 0 auto;
+    padding-top: 40px;
+}
+.gallery{
+    display: grid;
+    grid-template-columns: 48.5% 46.77%;
+    justify-content: space-between;
+    margin-top: 20px;
+}

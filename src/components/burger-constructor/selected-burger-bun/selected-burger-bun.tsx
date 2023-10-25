@@ -1,0 +1,46 @@
+import { FC } from 'react';
+import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-components';
+import { IIngredientWithId } from '../../../services/features/ingredients/types';
+import styles from './selected-burger-bun.module.css';
+
+interface IBurgerBunProps {
+  selectedBun: IIngredientWithId | null;
+  positionRu: 'верх' | 'низ';
+  positionEng: 'top' | 'bottom';
+  ingredientTypeDrop: string;
+  isOver: boolean;
+}
+
+const BurgerBun: FC<IBurgerBunProps> = ({
+  selectedBun,
+  isOver,
+  ingredientTypeDrop,
+  positionRu,
+  positionEng,
+}) =>
+  (selectedBun && (
+    <ConstructorElement
+      extraClass={styles.bun}
+      type={positionEng}
+      isLocked
+      text={`${selectedBun?.name} (${positionRu})`}
+      price={selectedBun?.price}
+      thumbnail={selectedBun?.image}
+    />
+  )) || (
+    <div
+      className={`${styles.containerBun} text text_type_main-default ${
+        (positionEng === 'top' && styles.containerBunTop) ||
+        styles.containerBunBottom
+      }${
+        (isOver &&
+          ingredientTypeDrop === 'bun' &&
+          ` ${styles.containerEmptyDrop}`) ||
+        ''
+      }`}
+    >
+      <span>Перетащите булку</span>
+    </div>
+  );
+
+export default BurgerBun;

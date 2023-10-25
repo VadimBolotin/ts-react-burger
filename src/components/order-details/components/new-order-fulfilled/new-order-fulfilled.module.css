@@ -1,0 +1,19 @@
+.order {
+    font-size: 14.4rem;
+    line-height: 83%;
+
+    filter: drop-shadow(0 4px 32px rgba(51, 51, 255, 0.5))
+    drop-shadow(0 0 8px rgba(51, 51, 255, 0.25))
+    drop-shadow(0 0 16px rgba(51, 51, 255, 0.25));
+}
+
+.heading {
+    /* padding-top: 33px; */
+    /* font-weight: 700; */
+    /* font-size: 2.4rem;
+    line-height: 125%; */
+}
+
+.image {
+    padding-top: 68px;
+}

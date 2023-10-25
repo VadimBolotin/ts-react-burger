@@ -1,0 +1,23 @@
+.card{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    row-gap: 9px;
+    width: 272px;
+    cursor: pointer;
+    transition: opacity 0.15s ease;
+}
+.cardDragging{
+    opacity: 0.4;
+}
+.heading{
+    font-size: 1.6rem;
+    line-height: 114%;
+    color: #fff;
+}
+.image{
+    max-width: 240px;
+    object-fit: cover;
+}

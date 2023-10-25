@@ -1,0 +1,16 @@
+.green {
+    color: #0cc;
+}
+.white {
+    color: #fff;
+}
+.list{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    height: 313px;
+    margin-top: 24px;
+}
+.item:not(:nth-child(10n + 1)) {
+    margin-top: 8px;
+}

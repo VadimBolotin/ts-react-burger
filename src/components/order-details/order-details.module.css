@@ -1,0 +1,24 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* padding: 120px 100px; */
+}
+
+.paragraph {
+    /* padding-top: 73px; */
+}
+
+.waiting {
+    /* padding-top: 12px; */
+}
+
+/* .paragraph,
+.waiting {
+    font-size: 1.6rem;
+    line-height: 114%;
+} */
+
+.waiting {
+    /* color:#8585ad; */
+}
